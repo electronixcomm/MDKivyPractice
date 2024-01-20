@@ -1,0 +1,71 @@
+MDScreen:
+
+    MDCard:
+        size_hint:None,None
+        size:300,450
+        pos_hint:{'center_x':0.5,'center_y':0.5}
+        elevation:10
+        padding:20
+        spacing:25
+        orientation:'vertical'
+        MDLabel:
+            id:welcome_label
+            text:'WELCOME'
+            font_size:35
+            halign:'center'
+            #size_hint_y:0.7
+            #height:self.texture_size[1]
+
+        MDTextField:
+            id:unm
+            mode:'round'
+            hint_text:'username'
+            icon_left:'account'
+            max_text_length:50
+            width:250
+            font_size:20
+            size_hint_x:None
+            pos_hint:{'center_x':0.5}
+            #height:150
+            multiline:False
+        MDBoxLayout:
+            orientation:'horizontal'
+            MDTextField:
+                id:pwd
+                mode:'round'
+                hint_text:'password'
+                #text:root.text
+                password:True
+                icon_left:'key-variant'
+                width:200
+                font_size:20
+                size_hint_x:None
+                multiline:False
+                max_text_length:32
+
+                #height:150
+            MDIconButton:
+                icon: "eye-off"
+                pos_hint: {"center_x": .5,'center_y':0.5}
+                #pos: pwd.width - self.width + dp(8), 0
+                theme_text_color: "Hint"
+                on_press:
+                    self.icon = "eye" if self.icon == "eye-off" else "eye-off"
+                    pwd.password = False if pwd.password is True else True
+                on_release:
+                    pwd.password = True
+        MDRaisedButton:
+            text:'LOGIN'
+            font_size:20
+            pos_hint:{'center_x':0.5}
+
+        MDRaisedButton:
+            text: "CLEAR"
+            pos_hint:{'center_x':0.5}
+            theme_text_color: "Custom"
+            text_color: "orange"
+            on_press:root.ids.unm.text=''
+            on_press:root.ids.pwd.text=''
+
+
+

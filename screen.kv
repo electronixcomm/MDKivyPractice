@@ -1,0 +1,35 @@
+ScreenManager:
+    MenuScreen:
+    ProfileScreen:
+    UploadScreen:
+
+<MenuScreen>:
+    name:'menu'
+    MDRectangleFlatButton:
+        text:'profile'
+        pos_hint:{'center_x':0.5,'center_y':0.7}
+        on_press:root.manager.current ='profile'
+    MDRectangleFlatButton:
+        text:'upload files'
+        pos_hint:{'center_x':0.5,'center_y':0.3}
+        on_press:root.manager.current ='upload'
+
+<ProfileScreen>:
+    name:'profile'
+    MDLabel:
+        text:'Welcome Niraj'
+        halign:'center'
+    MDRaisedButton:
+        text:'Back'
+        pos_hint:{'center_x':0.5,'center_y':0.1}
+        on_press:root.manager.current ='menu'
+<UploadScreen>:
+    name:'upload'
+    MDLabel:
+        text:'upload file her !!!'
+        halign:'center'
+    MDRaisedButton:
+        text:'Back to main Menu'
+        pos_hint:{'center_x':0.5,'center_y':0.1}
+        on_press:root.manager.current ='menu'
+

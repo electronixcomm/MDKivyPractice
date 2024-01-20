@@ -1,0 +1,136 @@
+ScreenManager:
+    id:screenManager
+    RootScreen:
+    MenuScreen:
+
+<RootScreen>:
+
+    name:'rootScreen'
+
+    Card:
+        size_hint:None,None
+        size:300,500
+        pos_hint:{'center_x':0.5,'center_y':0.5}
+        elevation:10
+        padding:20
+        spacing:25
+        orientation:'vertical'
+        color:1,1,1,1
+        md_bg_color: 0.2,0.9,0.5,1
+        source:'backimg.png'
+
+
+
+
+        MDLabel:
+            id:welcome_label
+            text:'WELCOME'
+            font_size:35
+            halign:'center'
+            color:0,0,0,1
+            #size_hint_y:0.7
+            #height:self.texture_size[1]
+
+        MDTextField:
+            id:unm
+            #mode:'round'
+            hint_text:'username'
+            icon_left:'account'
+            max_text_length:50
+            width:250
+            font_size:20
+            size_hint_x:None
+            pos_hint:{'center_x':0.5}
+            #height:150
+            multiline:False
+            line_color_focus:1,0,1,1
+            hint_text_color:1,1,1,1
+            on_release:
+
+        MDBoxLayout:
+            orientation:'horizontal'
+            MDTextField:
+                id:pwd
+                #mode:'round'
+                hint_text:'password'
+                #text:root.text
+                password:True
+                icon_left:'key-variant'
+                width:200
+                font_size:20
+                size_hint_x:None
+                multiline:False
+                max_text_length:32
+                line_color_focus:1,0,1,1
+                hint_text_color:1,1,1,1
+
+                #height:150
+            MDIconButton:
+                icon: "eye-off"
+                pos_hint: {"center_x": .5,'center_y':0.5}
+                #pos: pwd.width - self.width + dp(8), 0
+                theme_text_color: "Hint"
+                on_press:
+                    self.icon = "eye" if self.icon == "eye-off" else "eye-off"
+                    pwd.password = False if pwd.password is True else True
+                on_release:
+                    pwd.password = True
+        MDRaisedButton:
+            text:'LOGIN'
+            font_size:20
+            pos_hint:{'center_x':0.5}
+            on_press:root.ids.welcome_label.text='WELCOME,\n'+root.ids.unm.text.capitalize()
+            on_press:root.manager.current ='menuScreen'
+            #on_press:root.manager.get_screen('menuScreen').ids.labeltextscreen2.text=root.manager.get_screen('rootScreen').ids.welcome_label.text='WELCOME,\n'+root.ids.unm.text.capitalize()
+
+        MDRaisedButton:
+            text: "CLEAR"
+            pos_hint:{'center_x':0.5}
+            theme_text_color: "Custom"
+            text_color: "orange"
+            on_press:root.ids.unm.text=''
+            on_press:root.ids.pwd.text=''
+            on_press:root.ids.welcome_label.text='WELCOME'
+        BoxLayout:
+            orientation: 'horizontal'
+            spacing: '10dp'
+            #spacing: '10dp'
+            #padding: '10dp'
+
+            MDCheckbox:
+                id: checkbox
+                size_hint: 0.2, 0.75
+                size: '48dp', '48dp'
+                on_active: app.checkbox_state(self.active)
+
+            MDLabel:
+                text: 'keep me signed!'
+                halign: 'left'
+                valign: 'center'
+                color:'red'
+
+<MenuScreen>:
+    name:'menuScreen'
+
+    MDBoxLayout:
+        orientation:'vertical'
+
+        MDFloatingActionButtonSpeedDial:
+            id:speed_dial
+            data:app.datta
+            root_button_anim:True
+            label_text_color:1,0,0,1
+            bg_color_root_button:0.25,1,1,1
+            color_icon_stack_button:0,0,1,1
+            hint_animation:True
+
+
+
+
+
+
+
+
+
+
+
